@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <a class="back" href="details.html">← Back</a>
+  <header>
+    <h1>📝 Application Form</h1>
+    <p>Post Matric Scholarship</p>
+  </header>
+
+  <div id="formBox">
+    <label class="lbl">Full name</label>
+    <input id="name" class="field" placeholder="Your name">
+    <label class="lbl">Mobile number</label>
+    <input id="mobile" class="field" type="tel" placeholder="10-digit number">
+    <label class="lbl">College name</label>
+    <input id="college" class="field" placeholder="Your college">
+    <button class="btn" id="submit">Submit application</button>
+    <p id="err" class="warn"></p>
+  </div>
+
+  <div id="success" class="card done" style="display:none">
+    <h2>🎉 Application submitted!</h2>
+    <p>Your application ID:</p>
+    <b id="appId"></b>
+    <a class="btn" href="index.html">Back to Home</a>
+  </div>
+
+  <nav>
+    <a href="index.html">🏠<br>Home</a>
+    <a class="active" href="scholarships.html">📋<br>Browse</a>
+    <a href="eligibility.html">✅<br>Eligibility</a>
+  </nav>
+</div>
+
+<script>
+  document.getElementById("submit").addEventListener("click", () => {
+    const name = document.getElementById("name").value.trim();
+    const mobile = document.getElementById("mobile").value.trim();
+    const college = document.getElementById("college").value.trim();
+    const err = document.getElementById("err");
+
+    if (!name || !college || mobile.length !== 10 || isNaN(mobile)) {
+      err.textContent = "⚠️ Fill all fields. Mobile must be 10 digits.";
+      return;
+    }
+    document.getElementById("appId").textContent = "SCH" + Math.floor(100000 + Math.random() * 900000);
+    document.getElementById("formBox").style.display = "none";
+    document.getElementById("success").style.display = "block";
+  });
+</script>
+</body>
+</html>

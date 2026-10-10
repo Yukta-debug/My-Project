@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scholarship Details</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <a class="back" href="scholarships.html">← Back</a>
+
+  <header>
+    <h1>Post Matric Scholarship</h1>
+    <p>Ministry of Social Justice</p>
+  </header>
+
+  <div class="info">
+    <div><small>Amount</small><b>₹ 12,000 / year</b></div>
+    <div><small>Deadline</small><b class="red">30 Nov 2026</b></div>
+  </div>
+
+  <h2>✅ Eligibility</h2>
+  <div class="card">
+    <ul>
+      <li>Indian citizen</li>
+      <li>Family income below ₹2.5 lakh</li>
+      <li>Minimum 50% in previous exam</li>
+    </ul>
+  </div>
+
+  <h2>📄 Documents needed</h2>
+  <div class="card">
+    <label><input type="checkbox" class="doc"> Aadhaar card</label>
+    <label><input type="checkbox" class="doc"> Income certificate</label>
+    <label><input type="checkbox" class="doc"> Previous marksheet</label>
+    <label><input type="checkbox" class="doc"> Bank passbook</label>
+    <p id="count">0 of 4 ready</p>
+  </div>
+
+  <button class="btn" id="apply">Apply now</button>
+  <p id="msg"></p>
+
+  <nav>
+    <a href="index.html">🏠<br>Home</a>
+    <a class="active" href="scholarships.html">📋<br>Browse</a>
+    <a href="eligibility.html">✅<br>Eligibility</a>
+  </nav>
+</div>
+
+<script>
+  const docs = document.querySelectorAll(".doc");
+  const count = document.getElementById("count");
+  docs.forEach(d => d.addEventListener("change", () => {
+    const n = document.querySelectorAll(".doc:checked").length;
+    count.textContent = n + " of 4 ready";
+  }));
+
+  document.getElementById("apply").addEventListener("click", () => {
+    const n = document.querySelectorAll(".doc:checked").length;
+    const msg = document.getElementById("msg");
+    if (n === 4) {
+  msg.textContent = "🎉 All documents ready. Redirecting...";
+  setTimeout(() => { window.location.href = "apply.html"; }, 1000);
+} else {
+  msg.textContent = "⚠️ Please tick all documents first.";
+}
+    
+  });
+</script>
+</body>
+</html>

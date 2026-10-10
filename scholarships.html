@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse Scholarships</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>📋 Browse Scholarships</h1>
+    <p>Tap a filter to narrow the list</p>
+  </header>
+
+  <div class="chips">
+    <button class="chip active" data-f="all">All</button>
+    <button class="chip" data-f="merit">Merit</button>
+    <button class="chip" data-f="need">Need-based</button>
+    <button class="chip" data-f="girls">Girls</button>
+    <button class="chip" data-f="reserved">SC/ST/OBC</button>
+  </div>
+
+  <div class="card" data-t="merit">
+    <b>Central Sector Scheme</b><br>Ministry of Education<br>
+    <small>Deadline: 15 Dec 2026</small>
+    <a class="btn" href="details.html">View details</a>
+  </div>
+  <div class="card" data-t="reserved">
+    <b>Post Matric Scholarship</b><br>Ministry of Social Justice<br>
+    <small>Deadline: 30 Nov 2026</small>
+    <a class="btn" href="details.html">View details</a>
+  </div>
+  <div class="card" data-t="girls">
+    <b>Pragati Scholarship for Girls</b><br>AICTE<br>
+    <small>Deadline: 31 Oct 2026</small>
+    <a class="btn" href="details.html">View details</a>
+  </div>
+  <div class="card" data-t="need">
+    <b>Need-Based Aid Scheme</b><br>State Government<br>
+    <small>Deadline: 20 Dec 2026</small>
+    <a class="btn" href="details.html">View details</a>
+  </div>
+
+  <nav>
+    <a href="index.html">🏠<br>Home</a>
+    <a class="active" href="scholarships.html">📋<br>Browse</a>
+    <a href="eligibility.html">✅<br>Eligibility</a>
+  </nav>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

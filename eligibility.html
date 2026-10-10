@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Check Eligibility</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>✅ Check Eligibility</h1>
+    <p>Fill in your details to see matching scholarships</p>
+  </header>
+
+  <label class="lbl">Category</label>
+  <select id="cat" class="field">
+    <option value="general">General</option>
+    <option value="reserved">SC / ST / OBC</option>
+  </select>
+
+  <label class="lbl">Gender</label>
+  <select id="gender" class="field">
+    <option value="female">Female</option>
+    <option value="male">Male</option>
+    <option value="other">Other</option>
+  </select>
+
+  <label class="lbl">Family income per year (₹)</label>
+  <input id="income" class="field" type="number" placeholder="e.g. 200000">
+
+  <label class="lbl">Marks in previous exam (%)</label>
+  <input id="marks" class="field" type="number" placeholder="e.g. 65">
+
+  <button class="btn" id="check">Check now</button>
+
+  <div id="result"></div>
+
+  <nav>
+    <a href="index.html">🏠<br>Home</a>
+    <a href="scholarships.html">📋<br>Browse</a>
+    <a class="active" href="eligibility.html">✅<br>Eligibility</a>
+  </nav>
+</div>
+
+<script>
+  const schemes = [
+    { name: "Post Matric Scholarship", ok: (c, g, i, m) => c === "reserved" && i <= 250000 && m >= 50 },
+    { name: "Central Sector Scheme",   ok: (c, g, i, m) => m >= 80 && i <= 800000 },
+    { name: "Pragati Scholarship for Girls", ok: (c, g, i, m) => g === "female" && i <= 800000 },
+    { name: "Need-Based Aid Scheme",   ok: (c, g, i, m) => i <= 250000 }
+  ];
+
+  document.getElementById("check").addEventListener("click", () => {
+    const c = document.getElementById("cat").value;
+    const g = document.getElementById("gender").value;
+    const i = Number(document.getElementById("income").value);
+    const m = Number(document.getElementById("marks").value);
+    const out = document.getElementById("result");
+
+    if (!i || !m) {
+      out.innerHTML = '<p class="warn">⚠️ Please enter income and marks.</p>';
+      return;
+    }
+
+    const matches = schemes.filter(s => s.ok(c, g, i, m));
+    out.innerHTML = matches.length
+      ? "<h2>🎉 You may be eligible for:</h2>" +
+        matches.map(s => `<div class="card"><b>${s.name}</b><a class="btn" href="details.html">View details</a></div>`).join("")
+      : '<p class="warn">😕 No matches found. Try browsing all scholarships.</p>';
+  });
+</script>
+</body>
+</html>
